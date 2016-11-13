@@ -1,0 +1,9 @@
+﻿extends layout
+
+block content
+    h1 #{comment}
+    ul
+        for val in values
+            li= val
+        else
+            li There are no values

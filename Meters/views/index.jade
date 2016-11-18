@@ -1,63 +1,66 @@
 ﻿extends layout
 block content
   
-  h1= title
-  p Welcome to #{title} #{name}
-  form(method='POST' action='/meter') 
-    div.form-group
-      label(for='meter_id') Meter number:
-      input#meter_id.form-control(type='text', placeholder='0000000' name='meter_id')  
-      br          
-      div(style="display: inline-block")
-        label(for="start") Start:
+  //h4= title
+  div(class='mdl-card mdl-shadow--2dp' style='margin: auto; margin-top: 3%;')
+    div(class="mdl-card__title")
+     p(class="mdl-card__title-text") Введите данные:    
+    form(method='POST' action='/meter') 
+      div.form-group(class="mdl-card__actions mdl-card--border")
+        div(class="mdl-textfield mdl-js-textfield")
+          //label Номер счётчика:
+          label(class="mdl-textfield__label" for='meter_id') Номер счётчика...
+          input#meter_id.form-control(class="mdl-textfield__input" pattern="-?[0-9]*(\.[0-9]+)?" type='text' name='meter_id')  
+          span(class="mdl-textfield__error") Номер не должен содержать букв!
+        br          
+        div(class="mdl-textfield mdl-js-textfield")
+          label(for="start" class="mdl-textfield__label") Начало периода...
+          input#start(type="text" name='start_date' class="mdl-textfield__input")
         br
-        input#start(type="text" name='start_date')
-      div(style="display: inline-block")
-        label(for="end") End:
-        br
-        input#end(type="text" name='end_date')
-      button.btn.btn-primary(type='submit') Sign up
-  a(class='button' href='/meter/4231461') Счетчики 
-  script.
-    var startDate,
-        endDate,
-        updateStartDate = function() {
-            startPicker.setStartRange(startDate);
-            endPicker.setStartRange(startDate);
-            endPicker.setMinDate(startDate);
-        },
-        updateEndDate = function() {
-            startPicker.setEndRange(endDate);
-            startPicker.setMaxDate(endDate);
-            endPicker.setEndRange(endDate);
-        },
-        startPicker = new Pikaday({
-            field: document.getElementById('start'),
-            minDate: new Date(2015, 11, 01),
-            maxDate: new Date(2020, 12, 31),
-            onSelect: function() {
-                startDate = this.getDate();
-                updateStartDate();
-            }
-        }),
-        endPicker = new Pikaday({
-            field: document.getElementById('end'),
-            minDate: new Date(),
-            maxDate: new Date(2020, 12, 31),
-            onSelect: function() {
-                endDate = this.getDate();
-                updateEndDate();
-            }
-        }),
-        _startDate = startPicker.getDate(),
-        _endDate = endPicker.getDate();
-        if (_startDate) {
-            startDate = _startDate;
-            updateStartDate();
-        }
-        if (_endDate) {
-            endDate = _endDate;
-            updateEndDate();
-        }
+        div(class="mdl-textfield mdl-js-textfield")
+          label(for="end" class="mdl-textfield__label") Конец периода...
+          input#end(type="text" name='end_date' class="mdl-textfield__input")      
+        button.btn.btn-primary(type='submit' class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent") Смотреть
+    script.
+      var startDate,
+          endDate,
+          updateStartDate = function() {
+              startPicker.setStartRange(startDate);
+              endPicker.setStartRange(startDate);
+              endPicker.setMinDate(startDate);
+          },
+          updateEndDate = function() {
+              startPicker.setEndRange(endDate);
+              startPicker.setMaxDate(endDate);
+              endPicker.setEndRange(endDate);
+          },
+          startPicker = new Pikaday({
+              field: document.getElementById('start'),
+              minDate: new Date(2015, 11, 01),
+              maxDate: new Date(2020, 12, 31),
+              onSelect: function() {
+                  startDate = this.getDate();
+                  updateStartDate();
+              }
+          }),
+          endPicker = new Pikaday({
+              field: document.getElementById('end'),
+              minDate: new Date(),
+              maxDate: new Date(2020, 12, 31),
+              onSelect: function() {
+                  endDate = this.getDate();
+                  updateEndDate();
+              }
+          }),
+          _startDate = startPicker.getDate(),
+          _endDate = endPicker.getDate();
+          if (_startDate) {
+              startDate = _startDate;
+              updateStartDate();
+          }
+          if (_endDate) {
+              endDate = _endDate;
+              updateEndDate();
+          }
 = '\n'
   

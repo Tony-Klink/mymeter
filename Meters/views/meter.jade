@@ -2,27 +2,28 @@
 
 block content
  h2(style="text-align: center;") #{pageTitle}  
-  table(class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp" style="margin:auto;margin-top:5%;")
-    thead
-      tr
-        th(class="mdl-data-table__cell--non-numeric") Date
-        th Active energy
-        th Total active energy
-        th TAE Rate1
-        th TAE Rate2
-        th Active energy import
-        th AEI Rate1
-        th AEI Rate2
-    tbody
-      for val in values
-        tr        
-          td= val.date
-          td= val.activeEnergy
-          td= val.totalActiveEnergy
-          td= val.totalActiveEnergy1
-          td= val.totalActiveEnergy2
-          td= val.activeEnergyImport
-          td= val.activeEnergyImport1
-          td= val.activeEnergyImport2
-      else
-          td There are no values
+ 
+   table(class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp" style="margin:auto;margin-top:5%;")
+     thead
+       tr
+         th(class="mdl-data-table__cell--non-numeric") Date
+         th Active energy
+         th Total active energy
+         th TAE Rate1
+         th TAE Rate2
+         th Active energy import
+         th AEI Rate1
+         th AEI Rate2
+     tbody
+       for val in values
+         tr        
+           td= val.date
+           td= val.activeEnergy
+           td= val.totalActiveEnergy
+           td= val.totalActiveEnergy1
+           td= val.totalActiveEnergy2
+           td= val.activeEnergyImport
+           td= val.activeEnergyImport1
+           td= val.activeEnergyImport2
+       else
+           td There are no values

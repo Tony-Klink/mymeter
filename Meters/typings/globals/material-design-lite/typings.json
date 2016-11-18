@@ -1,0 +1,8 @@
+{
+  "resolution": "main",
+  "tree": {
+    "src": "https://raw.githubusercontent.com/DefinitelyTyped/DefinitelyTyped/250c3afd484aa4e7756bf4b64008655fc222fe14/material-design-lite/material-design-lite.d.ts",
+    "raw": "registry:dt/material-design-lite#1.1.3+20160423150231",
+    "typings": "https://raw.githubusercontent.com/DefinitelyTyped/DefinitelyTyped/250c3afd484aa4e7756bf4b64008655fc222fe14/material-design-lite/material-design-lite.d.ts"
+  }
+}

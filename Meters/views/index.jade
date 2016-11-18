@@ -1,7 +1,63 @@
 ﻿extends layout
-
 block content
+  
   h1= title
   p Welcome to #{title} #{name}
-  a(class='button' href='/users') Users 
+  form(method='POST' action='/meter') 
+    div.form-group
+      label(for='meter_id') Meter number:
+      input#meter_id.form-control(type='text', placeholder='0000000' name='meter_id')  
+      br          
+      div(style="display: inline-block")
+        label(for="start") Start:
+        br
+        input#start(type="text" name='start_date')
+      div(style="display: inline-block")
+        label(for="end") End:
+        br
+        input#end(type="text" name='end_date')
+      button.btn.btn-primary(type='submit') Sign up
+  a(class='button' href='/meter/4231461') Счетчики 
+  script.
+    var startDate,
+        endDate,
+        updateStartDate = function() {
+            startPicker.setStartRange(startDate);
+            endPicker.setStartRange(startDate);
+            endPicker.setMinDate(startDate);
+        },
+        updateEndDate = function() {
+            startPicker.setEndRange(endDate);
+            startPicker.setMaxDate(endDate);
+            endPicker.setEndRange(endDate);
+        },
+        startPicker = new Pikaday({
+            field: document.getElementById('start'),
+            minDate: new Date(2015, 11, 01),
+            maxDate: new Date(2020, 12, 31),
+            onSelect: function() {
+                startDate = this.getDate();
+                updateStartDate();
+            }
+        }),
+        endPicker = new Pikaday({
+            field: document.getElementById('end'),
+            minDate: new Date(),
+            maxDate: new Date(2020, 12, 31),
+            onSelect: function() {
+                endDate = this.getDate();
+                updateEndDate();
+            }
+        }),
+        _startDate = startPicker.getDate(),
+        _endDate = endPicker.getDate();
+        if (_startDate) {
+            startDate = _startDate;
+            updateStartDate();
+        }
+        if (_endDate) {
+            endDate = _endDate;
+            updateEndDate();
+        }
 = '\n'
+  

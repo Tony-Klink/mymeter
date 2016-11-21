@@ -2,13 +2,12 @@
 block content
   
   //h4= title
-  div(class='mdl-card mdl-shadow--2dp' style='margin: auto; margin-top: 3%;')
+  div(class='mdl-card mdl-shadow--8dp' style='margin: auto; margin-top: 3%;')
     div(class="mdl-card__title")
      p(class="mdl-card__title-text") Введите данные:    
-    form(method='POST' action='/meter') 
+    form(name='mainForm' method='POST' action='/meter' onsubmit="return validateForm()") 
       div.form-group(class="mdl-card__actions mdl-card--border")
-        div(class="mdl-textfield mdl-js-textfield")
-          //label Номер счётчика:
+        div(class="mdl-textfield mdl-js-textfield")          
           label(class="mdl-textfield__label" for='meter_id') Номер счётчика...
           input#meter_id.form-control(class="mdl-textfield__input" pattern="-?[0-9]*(\.[0-9]+)?" type='text' name='meter_id')  
           span(class="mdl-textfield__error") Номер не должен содержать букв!
@@ -20,7 +19,7 @@ block content
         div(class="mdl-textfield mdl-js-textfield")
           label(for="end" class="mdl-textfield__label") Конец периода...
           input#end(type="text" name='end_date' class="mdl-textfield__input")      
-        button.btn.btn-primary(type='submit' class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent") Смотреть
+        button.btn.btn-primary(type='submit' class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" style='magrin: auto;') Смотреть
     script.
       var startDate,
           endDate,
@@ -61,6 +60,23 @@ block content
           if (_endDate) {
               endDate = _endDate;
               updateEndDate();
+          }
+          function validateForm() {
+            var x = document.forms["mainForm"]["meter_id"].value;
+            var y = document.forms["mainForm"]["start_date"].value;
+            var z = document.forms["mainForm"]["end_date"].value;
+            if (x == "") {
+              alert("Не указан номер счетчика!");
+              return false;
+            } 
+            else if(y == ""){
+              alert("Не указана начальная дата!");
+              return false;
+            }
+            else if(z == ""){
+              alert("Не указана конечная дата!");
+              return false;
+            }            
           }
 = '\n'
   

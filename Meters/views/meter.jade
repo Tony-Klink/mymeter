@@ -1,19 +1,27 @@
 ﻿extends layout
 
 block content
- h2(style="text-align: center;") #{pageTitle}  
- 
-   table(class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp" style="margin:auto;margin-top:5%;")
+ if values == [] 
+  h2(style="text-align: center;") #{pageTitle}
+  
+   table(class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--8dp" style="margin:auto;margin-top:5%;")
      thead
        tr
-         th(class="mdl-data-table__cell--non-numeric") Date
-         th Active energy
-         th Total active energy
-         th TAE Rate1
-         th TAE Rate2
-         th Active energy import
-         th AEI Rate1
-         th AEI Rate2
+         th(class="mdl-data-table__cell--non-numeric") Дата показаний
+         div(class="mdl-tooltip mdl-tooltip--top" data-mdl-for="tt1") Потребленная энергия
+           th#tt1 Active energy
+         div(class="mdl-tooltip mdl-tooltip--top" data-mdl-for="tt2") Суммарная активная энергия
+           th#tt2 Total active energy
+         div(class="mdl-tooltip mdl-tooltip--top" data-mdl-for="tt3") Суммарная активная энергия ТАРИФ 1
+           th#tt3 TAE Rate1
+         div(class="mdl-tooltip mdl-tooltip--top" data-mdl-for="tt4") Суммарная активная энергия ТАРИФ 2
+           th#tt4 TAE Rate2
+         div(class="mdl-tooltip mdl-tooltip--top" data-mdl-for="tt5") Импорт активной энергии
+           th#tt5 Active energy import
+         div(class="mdl-tooltip mdl-tooltip--top" data-mdl-for="tt6") Импорт активной энергии ТАРИФ 1
+           th#tt6 AEI Rate1
+         div(class="mdl-tooltip mdl-tooltip--top" data-mdl-for="tt7") Импорт активной энергии ТАРИФ 2
+           th#tt7 AEI Rate2
      tbody
        for val in values
          tr        
@@ -25,5 +33,8 @@ block content
            td= val.activeEnergyImport
            td= val.activeEnergyImport1
            td= val.activeEnergyImport2
-       else
-           td There are no values
+ else        
+  div(class='mdl-card mdl-shadow--8dp' style='margin: auto; background-color:rgba(255, 255, 255, 0.9); margin-top:5%; width: 512px;')
+    h2(style="text-align: center;") #{pageTitle}
+    h2(style="text-align: center;") Данные отсутствуют
+ 
